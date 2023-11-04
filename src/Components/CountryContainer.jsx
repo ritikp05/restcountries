@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import Countrycard from './CountryCard';
+import Loader from './Loader';
+import { toast } from 'react-toastify';
 
-const CountryContainer = ({query}) => {
+const CountryContainer = ({query,filter}) => {
 
   const [countrydata, Setcountrydata] = useState([]);
- 
+   const[loading,setloading]=useState(true);
   useEffect(() => {
- const uniqueid=setTimeout(()=>{
   async function getData() {
-    const result = await axios.get('https://restcountries.com/v3.1/all');
+try{
+   const result = await axios.get(`https://restcountries.com/v3.1/${filter}`);
     Setcountrydata(result.data);
+    setloading(false);
   console.log(countrydata);
+}catch(error){
+  toast.error(error);
+}
   }
    getData();
- },2000)
-
- return(()=>{
-  clearTimeout(uniqueid)
- })
-
-
-
-  },[])
+  },[filter])
 
   return (
-    <div className='flex flex-row flex-wrap gap-8 justify-evenly'>
+   <>
 
+    {loading?<Loader/>:
+    <div className='flex flex-row flex-wrap gap-8 justify-evenly'>
      {countrydata.length > 0 &&
-        countrydata.filter((item)=> item.name?.common.toLowerCase().includes(query.toLowerCase())
-        || item.region.toLowerCase().includes(query)    ).map((alldata) => {
+        countrydata.filter((item)=> item.name?.common.toLowerCase().includes(query.toLowerCase())).map((alldata) => {
           return (
 
             <Countrycard
@@ -44,6 +43,8 @@ const CountryContainer = ({query}) => {
         })
       }
     </div>
+      }
+   </>
   )
 }
 

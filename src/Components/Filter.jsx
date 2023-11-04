@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { MenuItem, TextField } from '@mui/material'
-const Filter = ({ Setquery}) => {
+const Filter = ({ filter, Setfilter }) => {
+  useEffect(()=>{
+if(filter===""){
+  Setfilter("all");
+
+}
+
+  },[])
   return (<>
 
-<div className='mr-4'><TextField select label="Filter by Region" className='w-60'  onChange={(e)=>Setquery(e.target.value.toLowerCase())}>
+    <div className='mr-4'>
+    <select className='outline-dotted w-auto h-auto p-2' value={filter}  onChange={(e) => Setfilter((e.target.value))} defaultValue="all">
+      <option value={"all"} >All</option> 
+      <option value={"region/africa"}>Africa</option>
+      <option value={"region/america"}>Americas</option>
+      <option value={"region/asia"}>Asia</option>
+      <option value={"region/europe"}>Europe</option>
+      <option value={"region/oceania"}>Oceania</option>
 
-            <MenuItem value="Africa">Africa</MenuItem>
-            <MenuItem value='America'>America</MenuItem>
-            <MenuItem value='Asia'>Asia</MenuItem>
-            <MenuItem value='Europe'>Europe</MenuItem>
-            <MenuItem value='Oceania'>Oceania</MenuItem>
-        
-        </TextField></div>
+    </select></div>
   </>
   )
 }
