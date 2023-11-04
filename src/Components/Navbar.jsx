@@ -1,5 +1,4 @@
 import React from 'react'
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
