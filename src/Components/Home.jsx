@@ -5,7 +5,7 @@ import CountryContainer from './CountryContainer'
 
 const Home = () => {
     const [query, Setquery] = useState("");
-    const[filter,Setfilter]=useState("");
+    const[filter,Setfilter]=useState("all");
     return (
         <div className='flex w-full h-screen flex-col gap-8 mt-12'>
             <div className='flex lg:justify-between md:justify-between gap-3 ml-2 sm:justify-between lg:flex-row md:flex-row sm:flex-row flex-col mt-8'>

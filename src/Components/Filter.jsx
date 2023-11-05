@@ -1,17 +1,11 @@
 import React, { useEffect } from 'react'
 
 const Filter = ({ filter, Setfilter }) => {
-  useEffect(()=>{
-if(filter===""){
-  Setfilter("all");
 
-}
-
-  },[])
   return (<>
 
     <div className='mr-4'>
-    <select className='outline-dotted w-auto h-auto p-2' value={filter}  onChange={(e) => Setfilter((e.target.value))} defaultValue="all">
+    <select className='outline-dotted w-auto h-auto p-2' value={filter}  onChange={(e) => Setfilter((e.target.value))} >
       <option value={"all"} >All</option> 
       <option value={"region/africa"}>Africa</option>
       <option value={"region/america"}>Americas</option>
